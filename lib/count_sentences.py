@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import re
+
 class MyString:
   def __init__(self, value = ""):
     self._value = value
@@ -14,7 +16,10 @@ class MyString:
       print("The value must be a string.")
 
   def is_sentence(self):
-    pass
+    if self._value.endswith("."):
+      return True
+    else:
+      return False
 
   def is_question(self):
     if self._value.endswith("?"):
@@ -23,9 +28,24 @@ class MyString:
       return False
 
   def is_exclamation(self):
-    pass
+    if self._value.endswith("!"):
+      return True
+    else:
+      return False
 
   def count_sentences(self):
-    pass
-
+    count = re.findall(r"[.!?]+", self.value)
+    return len(count)
+  
   value = property(get_value, set_value)
+
+# string = MyString()
+# string.value = "This is a string! It has three sentences. Right?"
+# print(string.count_sentences())
+
+class Pet:
+
+  def __init__(self, name):
+    self.name = name
+
+buddy = Pet("Buddy")
